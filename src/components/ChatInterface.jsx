@@ -82,6 +82,7 @@ const ChatInterface = ({ documents }) => {
 
       setMessages(prev => [...prev, botMessage]);
     } catch (error) {
+      console.error('Error generating response:', error);
       const errorMessage = {
         id: Date.now() + 1,
         text: "Sorry, I encountered an error while processing your message. Please make sure your API keys are configured correctly.",
