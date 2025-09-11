@@ -25,9 +25,10 @@ const FileUpload = ({ onDocumentsProcessed }) => {
         console.log('Processing file:', file.name, 'Type:', file.type);
         
         try {
-          // Add timeout to prevent infinite processing
+          // Add longer timeout for PDF processing
+          const timeoutDuration = file.type === 'application/pdf' ? 60000 : 30000; // 60s for PDFs, 30s for others
           const timeoutPromise = new Promise((_, reject) =>
-            setTimeout(() => reject(new Error('Processing timeout')), 30000)
+            setTimeout(() => reject(new Error('Processing timeout - file may be too large or complex')), timeoutDuration)
           );
           
           const processPromise = processDocument(file);
@@ -78,12 +79,13 @@ const FileUpload = ({ onDocumentsProcessed }) => {
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
     accept: {
+      'application/pdf': ['.pdf'],
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'],
       'application/msword': ['.doc'],
       'text/plain': ['.txt']
     },
     multiple: true,
-    maxSize: 10 * 1024 * 1024, // 10MB limit
+    maxSize: 50 * 1024 * 1024, // 50MB limit
     onDropRejected: (rejectedFiles) => {
       const reasons = rejectedFiles.map(({ file, errors }) => 
         `${file.name}: ${errors.map(e => e.message).join(', ')}`
@@ -142,6 +144,9 @@ const FileUpload = ({ onDocumentsProcessed }) => {
           </div>
           
           <div className="flex items-center space-x-4 text-xs text-gray-500">
+            <span className="px-2 py-1 bg-red-50 text-red-700 rounded-md font-medium">
+              PDF (.pdf)
+            </span>
             <span className="px-2 py-1 bg-blue-50 text-blue-700 rounded-md font-medium">
               Word (.docx, .doc)
             </span>
@@ -150,8 +155,8 @@ const FileUpload = ({ onDocumentsProcessed }) => {
             </span>
           </div>
           
-          <p className="text-xs text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
-            PDF support temporarily disabled
+          <p className="text-xs text-gray-500">
+            Maximum file size: 50MB per file
           </p>
         </div>
       </div>
@@ -173,7 +178,12 @@ const FileUpload = ({ onDocumentsProcessed }) => {
         <div className="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-xl">
           <div className="flex items-center">
             <div className="w-5 h-5 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mr-3"></div>
-            <p className="text-sm font-medium">Processing your documents...</p>
+            <div>
+              <p className="text-sm font-medium">Processing your documents...</p>
+              <p className="text-xs text-blue-600 mt-1">
+                PDF files may take longer to process depending on size and complexity
+              </p>
+            </div>
           </div>
         </div>
       )}

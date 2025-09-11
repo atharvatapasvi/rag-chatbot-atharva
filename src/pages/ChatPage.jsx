@@ -207,7 +207,7 @@ const ChatPage = () => {
                   No Documents Yet
                 </h3>
                 <p className="text-gray-600 mb-6 leading-relaxed">
-                  Upload your first document to start having intelligent conversations with your content using AI.
+                  Upload your first document to start having intelligent conversations with your content using AI. Supports PDF, Word, and text files.
                 </p>
                 {!showUpload && (
                   <button
