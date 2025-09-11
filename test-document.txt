@@ -1,0 +1,17 @@
+This is a sample text document for testing the RAG chatbot upload functionality.
+
+It contains multiple paragraphs with different types of information that can be used to test the document processing and retrieval capabilities.
+
+Here are some key points:
+1. This document discusses artificial intelligence and machine learning
+2. It covers natural language processing techniques
+3. It explains how RAG (Retrieval Augmented Generation) systems work
+4. The system should be able to answer questions about this content
+
+Machine learning is a subset of artificial intelligence that enables computers to learn and improve from experience without being explicitly programmed. It uses algorithms and statistical models to analyze data and make predictions or decisions.
+
+Natural Language Processing (NLP) is a branch of AI that helps computers understand, interpret, and manipulate human language. It combines computational linguistics with statistical, machine learning, and deep learning models.
+
+RAG systems combine the power of large language models with external knowledge retrieval to provide more accurate and contextual responses. They work by first retrieving relevant information from a knowledge base and then using that information to generate responses.
+
+This test document should help verify that the upload and text processing functionality is working correctly in the chatbot application.
