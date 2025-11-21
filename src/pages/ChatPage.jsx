@@ -72,7 +72,7 @@ const ChatPage = () => {
                   <ChatBubbleLeftRightIcon className="h-5 w-5 text-white" />
                 </div>
                 <h1 className="text-xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  RAG Chatbot
+                  RAG Chatbot -project by Atharva and Sumaiyya
                 </h1>
               </div>
               <div className="hidden sm:block">
